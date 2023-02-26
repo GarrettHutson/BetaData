@@ -10,11 +10,18 @@ climbsController.getClimbs,
    res.status(200).json(res.locals.climbs)
 }
 )
-
+router.get('/getProjecting/:route',
+climbsController.getProjecting,
+(req,res,next) => {
+   res.status(200).json(res.locals.projecting)
+}
+)
 router.patch('/deleteComment/:climb',
 climbsController.deleteComment,
 (req,res,next) => {
-    res.status(200).json(res.locals.deleted)
+    const deleted = res.locals.deleted
+    const user = res.locals.user
+    res.status(200).json({deleted:deleted, user:user})
 }
 )
 
@@ -23,7 +30,9 @@ climbsController.deleteComment,
 router.patch('/deleteProjecting/:climb',
 climbsController.deleteProjecting,
 (req,res,next) => {
-    res.status(200).json(res.locals.deleted)
+const deleted = res.locals.deleted;
+const user = res.locals.user
+    res.status(200).json({deleted:deleted, user:user})
 }
 )
 
@@ -32,7 +41,13 @@ climbsController.deleteProjecting,
 router.patch('/addProjecting/:climb',
 climbsController.addProjecting,
 (req,res,next) => {
-    res.status(200).json(res.locals.projecting)
+
+
+    const projecting = res.locals.projecting
+    const user = res.locals.user
+   
+   
+    res.status(200).json({projecting: projecting, user:user})
 }
 )
 
@@ -40,7 +55,8 @@ router.post('/:climb',
 climbsController.addClimbComment,
 (req,res,next) => {
     const comments = res.locals.comments;
-    res.status(200).json(comments)
+    const user = res.locals.user
+    res.status(200).json({comments:comments,user:user})
 }
 )
 

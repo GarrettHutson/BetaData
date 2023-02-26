@@ -5,7 +5,7 @@ const userController = require('../controllers/userControllers')
 const router = express.Router();
 
 router.post('/signup', userController.signUp, (req,res,next) => {
-    res.status(200).send("user added")
+    res.status(200).json(res.locals.users)
 })
 
 
@@ -16,5 +16,12 @@ router.get('/', userController.getUsers, (req,res,)=>{
  router.post('/login', userController.login,(req,res,next) => {
     res.status(200).json(res.locals.user)
  })
+ router.patch('/bookmark',
+ userController.bookmark,
+ (req,res,next)=>{
+res.status(200).json(res.locals.user)
+ }
+ 
+ )
 
 module.exports = router;

@@ -29,8 +29,9 @@ export default function App() {
   const [signedIn, setSignedIn] = useState(false)
 
 
-  function createUser() {
-    fetch('/user/signup', {
+ function createUser() {
+
+  fetch('/user/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON'
@@ -42,8 +43,10 @@ export default function App() {
       })
     })
       .then(res => res.json())
-      .then(setLoggedIn(true))
-      return navigate("/")
+      .then(res => console.log(res))
+      .then(setLoggedIn(true) )
+     
+      return navigate("/login")
   }
 
 
@@ -126,13 +129,12 @@ export default function App() {
     <div>
       <Nav signedIn={signedIn} loggedIn={loggedIn} signout={signout} />
       <Routes >
-        <Route path="/" element={<Home data={data} showRoutes={showRoutes} showCrags={showCrags} displayRoutes={displayRoutes} displayCrag={displayCrag} handleRouteContent={handleRouteContent} handleProjectGrade={handleProjectGrade} />} />
+        <Route path="/" element={<Home data={data} showRoutes={showRoutes} showCrags={showCrags} displayRoutes={displayRoutes} displayCrag={displayCrag} handleRouteContent={handleRouteContent}  />} />
         
-        <Route path="/content" element={<RouteContent data={data} route={route} cragId={cragId} user={user} />} />
+        <Route path="/content" element={<RouteContent data={data} route={route} cragId={cragId} user={user} loggedIn={loggedIn} setUserData={setUserData} />} />
         <Route path="/profile" element={<Profile  userData={userData}   />} />
-
-        <Route path="/signout" element={<Signout />} />
-        <Route path="/signup" element={<Signup  setSignedIn={setSignedIn} createUser={createUser}  username={username} password={password} handlePassword={handlePassword} handleUsername={handleUsername}     />} />
+        <Route path="/signout" element={<Signout userData={userData} />} />
+        <Route path="/signup" element={<Signup projectGrade={projectGrade}  setSignedIn={setSignedIn} createUser={createUser}  username={username} password={password} handlePassword={handlePassword} handleUsername={handleUsername}  handleProjectGrade={handleProjectGrade}   />} />
         <Route path="/login" element={<Login user={user} setLoggedIn={setLoggedIn} login={login} loginUsername={loginUsername} loginPassword={loginPassword} handleLoginPassword={handleLoginPassword} handleLoginUser={handleLoginUser} />} />
       <Route path="/*" element={<Error />} />
       </Routes>

@@ -18,6 +18,7 @@ module.exports = {
             '/user': 'http://localhost:3000',
             '/climbs': 'http://localhost:3000'
           },
+       
         },
     module: {
         rules: [

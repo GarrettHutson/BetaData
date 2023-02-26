@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+
 
 
 const Schema = mongoose.Schema;
@@ -12,14 +13,24 @@ const UserSchema = new Schema({
   projectGrade: { type: String, required: true },
   projectlist: [
     {
-      name:String
+      name: String
     }
   ],
   beta: [
     {
+      climb: String,
       comment: String,
     }
   ],
+  bookmarkedBeta: [
+    {
+      climb: String,
+      author: String,
+      comment: String
+
+    }
+  ]
+
 });
 
 UserSchema.pre('save', async function (next) {
