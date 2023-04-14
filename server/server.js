@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
 
-const MONGO_URI = 'mongodb+srv://garretthutson:tempPass99@cluster0.ilxwjxc.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO_URI, {
     // options for the connect method to parse the URI
